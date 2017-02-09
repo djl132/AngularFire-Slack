@@ -1,6 +1,8 @@
+
+/*create authentication service object for authcontroller to use*/
 angular
-  .module('angularFireSlack')
-  .factory('Auth', function($firebaseAuth){
-    var auth = $firebaseAuth();
+  .module('angularfireSlackApp')
+  .factory('Auth', function(firebase){
+    var auth = firebase.auth();
     return auth;  
  });

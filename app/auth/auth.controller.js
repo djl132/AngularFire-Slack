@@ -1,27 +1,30 @@
-angular.module('angularfireSlackApp')
-  .controller('AuthCtrl', function(Auth, $state){
+/*Controller that deals with authentication(data, methods) using AuthService*/
+angular
+  .module('angularfireSlackApp')
+  .controller('AuthCtrl', ['$state', 'Auth', function(Auth, $state){
     var authCtrl = this;
-  
-  //when does this information clear? because it is a singleton and how exactly does this info have information 
-    authCtrl.user = {
+
+   authCtrl.user = {
       email: '',
-      password:''
+      password: ''
     };
-      authCtrl.login = function (){
-        Auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (auth){ //if authorization sucessful, go to home.
+  
+    authCtrl.login = function (){
+        Auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (auth){
           $state.go('home');
         }, function (error){
           authCtrl.error = error;
         });
       };
   
-      authCtrl.register = function (){
+    authCtrl.register = function (){
         Auth.$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (user){
           $state.go('home');
         }, function (error){
           authCtrl.error = error;
         });
-    };
-  
-      
-  });
+      };
+  }]);
+
+/*this contorller isn't correctly encapsulated right? I have access to this controller from the global scope right?*/
+

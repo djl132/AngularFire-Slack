@@ -20,19 +20,24 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
       
-      <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
-      <script>
-        // Initialize Firebase
-        var config = {
-          apiKey: "AIzaSyAl9D8DTs_hCEPsWa-woS4L1ZZY2P5oRek",
-          authDomain: "fireslack-b98b7.firebaseapp.com",
-          databaseURL: "https://fireslack-b98b7.firebaseio.com",
-          storageBucket: "fireslack-b98b7.appspot.com",
-          messagingSenderId: "1079799924919"
-        };
-        firebase.initializeApp(config);
-      </script>
-    
+  <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<!--  AngularFire-->
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAq-dLVc4Lq5QREVUQU75FyxstyOo0SuJ4",
+    authDomain: "dunno-e4c4f.firebaseapp.com",
+    databaseURL: "https://dunno-e4c4f.firebaseio.com",
+    storageBucket: "dunno-e4c4f.appspot.com",
+    messagingSenderId: "411860181736"
+  };
+  firebase.initializeApp(config);
+</script>
+
     
     <ui-view></ui-view>
 
@@ -50,11 +55,8 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/firebase/firebase.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-md5/angular-md5.js"></script>
     <!-- endbower -->
@@ -62,13 +64,8 @@
     
     
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="app.js"></script>
-    <!-- endbuild -->
-    
-    <!--    Authorization-->
-    <script src="auth/auth.service.js"></script>
+   <script src="app.js"></script>
     <script src="auth/auth.controller.js"></script>
-    <script src="channels/channels.service.js"></script>
-
+    <script src="auth/auth.service.js"></script>
 </body>
 </html>
