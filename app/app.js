@@ -42,8 +42,9 @@ angular
         controller: 'AuthCtrl as authCtrl',
         templateUrl: 'auth/register.html',
         resolve: {
+          /*IF ALREADY SIGNED IN, PREVENT FROM GOING TO THE REGISTER PAGE OR STATE*/
             requireNoAuth: function($state, Auth){
-              return Auth.$requireSignIn().then(function(auth){ /*IF ALREADY SIGNED IN, PREVENT FROM GOING TO THE REGISTER PAGE OR STATE*/
+                return Auth.$requireSignIn().then(function(auth){ 
                 $state.go('home');
               }, function(error){
                 return;
