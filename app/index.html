@@ -55,9 +55,9 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-md5/angular-md5.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -65,8 +65,9 @@
     
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
    <script src="app.js"></script>
-    <script src="auth/interface.js"></script>
     <script src="auth/auth.controller.js"></script>
     <script src="auth/auth.service.js"></script>
+    <script src="users/users.service.js"></script>
+    <script src="users/profile.controller.js"></script>
 </body>
 </html>

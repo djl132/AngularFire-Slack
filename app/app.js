@@ -20,9 +20,7 @@ angular
           url:'/',
           templateUrl:'home/home.html'
         })
-    
-        .state('login', 
-          {
+        .state('login', {
           url: '/login',
           controller: 'AuthCtrl as authCtrl',
           templateUrl: 'auth/login.html',
@@ -36,7 +34,6 @@ angular
               }
             }
           })
-    
       .state('register', {
         url: '/register',
         controller: 'AuthCtrl as authCtrl',
@@ -51,8 +48,29 @@ angular
               });
             }
           }
-      });
-  
+      })
+      .state('profile',{
+        url:'/profile',
+        controller: "ProfileCtrl as profileCtrl",
+        templateUrl: 'users/profile.html',
+        resolve: {
+          //view profile only if authenticated
+          //if authenticated, get auth (email, password, uid) info
+          auth: function(Auth, $state){
+            return Auth.$requireSignIn().catch(function(auth){
+              console.log("hi");
+              $state.go('home');
+            })
+          }, 
+          //if authenticated, get profile info
+          profile: function(Users, Auth){
+              return Auth.$requireSignIn().then(function(auth){
+                Users.getProfile(auth.id).$loaded();
+              });
+          }
+        }
+    });
+                                      
     $urlRouterProvider
       .otherwise('/');
   })

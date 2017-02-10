@@ -1,7 +1,7 @@
 /*Controller that deals with authentication(data, methods) using AuthService*/
 angular
   .module('angularfireSlackApp')
-  .controller('AuthCtrl', ['interface','$state' , function(Auth, $state){
+  .controller('AuthCtrl', ['Auth','$state', function(Auth, $state){
     var authCtrl = this;
 
    authCtrl.user = {
@@ -11,6 +11,7 @@ angular
   
     authCtrl.login = function (){
         Auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (auth){
+          console.log("hi");
           $state.go('home');
         }, function (error){
           authCtrl.error = error;
