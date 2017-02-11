@@ -4,7 +4,7 @@
   function UserFactory($firebaseArray, $firebaseObject){
     //get ref to users query object --> get child objects --> in order to use $loaded --> resolve method
     //get users array ---> get/manipulate data(child in)
-      var usersRef  = firebase.database().ref().child('users');
+      var usersRef  = firebase.database().ref().child('users'); //WHERE IS THIS GETTING CREATED?
       var users = $firebaseArray(usersRef);
     
     
@@ -12,6 +12,9 @@
       
       //get user object of a user(with a specific uid)
       getProfile: function(uid){
+        var test = $firebaseObject(usersRef.child(uid));
+        console.log(t1est);
+        debugger;
         return $firebaseObject(usersRef.child(uid)); //to load it into profile
       },
       

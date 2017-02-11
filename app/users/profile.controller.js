@@ -6,8 +6,9 @@
     
     profileCtrl.profile = profile;
     
-    profile.updateProfile = function(){
+    profileCtrl.updateProfile = function(){
       profileCtrl.profile.emailHash = md5.createHash(auth.email);
+debugger;
       profileCtrl.profile.$save(); //update firebase about new email and store it as an object {uid: profile object(keys: displayname, emailhash)} 
     }
     

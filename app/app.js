@@ -18,8 +18,17 @@ angular
     $stateProvider
         .state('home',{
           url:'/',
-          templateUrl:'home/home.html'
-        })
+          templateUrl:'home/home.html',
+      resolve: {
+        requireNoAuth: function($state, Auth){
+          return Auth.$requireSignIn().then(function(auth){
+            $state.go('channels');
+          }, function(error){
+            return;
+          });
+          }
+      }
+    })
         .state('login', {
           url: '/login',
           controller: 'AuthCtrl as authCtrl',
@@ -68,11 +77,39 @@ angular
           profile: function(Users, Auth){
             debugger;
               return Auth.$requireSignIn().then(function(auth){
-                Users.getProfile(auth.id).$loaded();
+                return Users.getProfile(auth.uid).$loaded();
               });
           }
         }
-    });
+    })
+    .state('channels', {
+      url: '/channels',
+      controller: 'ChannelsCtrl as channelsCtrl',
+      templateUrl: 'channels/index.html',
+      resolve: {
+        channels: function (Channels){
+          return Channels.$loaded();
+        },
+        profile: function ($state, Auth, Users){
+          return Auth.$requireSignIn().then(function(auth){
+            return Users.getProfile(auth.uid).$loaded().then(function (profile){
+              if(profile.displayName){
+                return profile;
+              } else {
+                $state.go('profile');
+              }
+            });
+          }, function(error){
+            $state.go('home');
+          });
+        }
+      }
+    })
+  .state('channels.create', {
+      url: '/create',
+      templateUrl: 'channels/create.html',
+      controller: 'ChannelsCtrl as channelsCtrl'
+    })
                                       
     $urlRouterProvider
       .otherwise('/');

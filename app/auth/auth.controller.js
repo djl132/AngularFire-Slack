@@ -11,6 +11,7 @@ angular
   
     authCtrl.login = function (){
         Auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (auth){
+                    debugger;
           $state.go('home');
         }, function (error){
           authCtrl.error = error;
@@ -20,6 +21,8 @@ angular
   
     authCtrl.register = function (){
         Auth.$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (user){
+          console.log(user.uid);//create user with a reference name of uid, also stored in  its $id property(accessible through orderbyChild)
+          debugger;
           $state.go('home');
         }, function (error){
           authCtrl.error = error;
