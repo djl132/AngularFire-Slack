@@ -11,10 +11,10 @@ angular
   
     authCtrl.login = function (){
         Auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password).then(function (auth){
-          console.log("hi");
           $state.go('home');
         }, function (error){
           authCtrl.error = error;
+          debugger;
         });
       };
   

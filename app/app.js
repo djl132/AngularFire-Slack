@@ -26,8 +26,9 @@ angular
           templateUrl: 'auth/login.html',
           resolve: {
               requireNoAuth: function($state, Auth){
+                debugger;
                 return Auth.$requireSignIn().then(function(auth){ /*IF ALREADY SIGNED IN, PREVENT FROM GOING TO THE LOGIN PAGE OR STATE*/
-                  $state.go('home');
+                  $state.go('home'); //why not just go directly to channels?
                 }, function(error){
                   return;
                 });
@@ -53,16 +54,17 @@ angular
         url:'/profile',
         controller: "ProfileCtrl as profileCtrl",
         templateUrl: 'users/profile.html',
+      
+      //why is it that if I change my displayName and update the profile and I'm already logged in, it would shoot me back to home and 
         resolve: {
           //view profile only if authenticated
-          //if authenticated, get auth (email, password, uid) info
+          //if authenticated, get auth (email, password, uid) info which contains email
           auth: function(Auth, $state){
             return Auth.$requireSignIn().catch(function(auth){
-              console.log("hi");
               $state.go('home');
             })
           }, 
-          //if authenticated, get profile info
+          //profile info
           profile: function(Users, Auth){
               return Auth.$requireSignIn().then(function(auth){
                 Users.getProfile(auth.id).$loaded();

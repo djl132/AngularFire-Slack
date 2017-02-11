@@ -17,7 +17,6 @@
       
       //get display name of a user(with a specific uid($key of array object))
       getDisplayName: function(uid){
-        console.log(users.$getRecord(uid).displayName);
         return users.$getRecord(uid).displayName;
       },
       
