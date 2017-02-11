@@ -55,7 +55,7 @@ angular
         controller: "ProfileCtrl as profileCtrl",
         templateUrl: 'users/profile.html',
       
-      //why is it that if I change my displayName and update the profile and I'm already logged in, it would shoot me back to home and 
+      //why is it that if I change my displayName and update the profile and I'm already logged inc, it would shoot me back to home and 
         resolve: {
           //view profile only if authenticated
           //if authenticated, get auth (email, password, uid) info which contains email
@@ -66,6 +66,7 @@ angular
           }, 
           //profile info
           profile: function(Users, Auth){
+            debugger;
               return Auth.$requireSignIn().then(function(auth){
                 Users.getProfile(auth.id).$loaded();
               });
