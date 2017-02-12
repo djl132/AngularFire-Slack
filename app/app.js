@@ -110,6 +110,22 @@ angular
       url: '/create',
       templateUrl: '/channels/create.html',
       controller: 'ChannelsCtrl as channelsCtrl'
+    })
+    .state('channels.messages',{
+      url: '/{channelId}/messages',
+      templateUrl: 'channels/messages.html',
+      controller:'MessageCtrl as messageCtrl',
+      resolve:{
+        //get messages in the current channel using channelId
+        messages: function($stateParams, Messages){    
+          return Messages.forChannel($stateParams.channelId).$loaded();
+        }, 
+        //get channelName of the current channel using channelId 
+        //WHEN WAS THIS CHANNEL ID CREATED? UNLESS ITS SPECIFIED IN RULES.
+        channelName: function($stateParams, channels){
+          return '#' + channels.$getRecord($stateParams.channelId).name;
+        }
+      }
     });
                                       
     $urlRouterProvider
