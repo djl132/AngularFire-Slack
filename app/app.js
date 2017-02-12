@@ -85,31 +85,32 @@ angular
     .state('channels', {
       url: '/channels',
       controller: 'ChannelsCtrl as channelsCtrl',
-      templateUrl: 'channels/index.html',
-      resolve: {
-        channels: function (Channels){
-          return Channels.$loaded();
+      templateUrl:'/channels/index.html',
+      resolve:{
+        channels: function(Channels){
+          return Channels.$loaded(); //WHY USE LOADED?(firebaseArray) why not just retreive the channel firebaseArray immediateley?
         },
-        profile: function ($state, Auth, Users){
-          return Auth.$requireSignIn().then(function(auth){
-            return Users.getProfile(auth.uid).$loaded().then(function (profile){
-              if(profile.displayName){
-                return profile;
-              } else {
-                $state.go('profile');
-              }
+        profile: function(Auth, Users, $state){
+          //check if profile has a displayName -> set if none., return is there is
+          Auth.$requireSignIn().then(function(auth){
+            Users.getProfile(auth.uid).$loaded().then(function(profile){
+              if(profile.displayName)
+                  return profile
+              else
+                  $state.go('profile');
             });
+            
           }, function(error){
             $state.go('home');
           });
         }
       }
     })
-  .state('channels.create', {
+    .state('channels.create', {
       url: '/create',
-      templateUrl: 'channels/create.html',
+      templateUrl: '/channels/create.html',
       controller: 'ChannelsCtrl as channelsCtrl'
-    })
+    });
                                       
     $urlRouterProvider
       .otherwise('/');
