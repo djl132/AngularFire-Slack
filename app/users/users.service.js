@@ -13,8 +13,6 @@
       //get user object of a user(with a specific uid)
       getProfile: function(uid){
         var test = $firebaseObject(usersRef.child(uid));
-        console.log(t1est);
-        debugger;
         return $firebaseObject(usersRef.child(uid)); //to load it into profile
       },
       
