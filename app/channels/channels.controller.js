@@ -1,9 +1,8 @@
 (function(){
   
-  function ChannelsCtrl(channels, profile, Users, Auth, $state){
+  function ChannelsCtrl(Auth, Users, $state, profile, channels){
     var channelsCtrl = this;
     channelsCtrl.channels = channels;
-    console.log(channels);
     channelsCtrl.profile = profile;
     channelsCtrl.getGravatar = Users.getGravatar;
 
@@ -19,7 +18,7 @@
           channelsCtrl.newChannel = {
             name: ''
           };
-        $state.go('channels.messages',{channelId: ref.key()}); 
+        $state.go('channels.messages',{channelId: ref.key}); 
         });
     }
     
@@ -35,6 +34,6 @@
   
   angular
     .module("angularfireSlackApp")
-    .controller('ChannelsCtrl', ['Auth', 'Users', '$state', ChannelsCtrl]);
+    .controller('ChannelsCtrl', ChannelsCtrl);
 })();
 //why don't we have to import Channels dependency?, is it because resolve function channels already does?

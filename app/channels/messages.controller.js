@@ -7,6 +7,7 @@ angular
   
   messagesCtrl.messages = messages;
   messagesCtrl.channelName = channelName;
+  console.log(channelName)
   
   messagesCtrl.message = '';
   
@@ -15,11 +16,11 @@ angular
     messages.$add({
       uid: profile.$id,
       body: messagesCtrl.message,
-      timestamp: firebase.database.serverValue.TIMESTAMP
+      timestamp: firebase.database.ServerValue.TIMESTAMP
     }).then(function(){
       messagesCtrl.message = ''; // clear message
     });
     }
   };
   
-})
+});

@@ -10,7 +10,7 @@
     <div class="channel-list">
       <div class="list-head">Channels</div>
       <div class="channels" ng-repeat="channel in channelsCtrl.channels">
-        <a ui-sref="channels.messages({channelId: channel.$id})" ui-sref-active="selected">#{{channel.name}}</a> //add special styling to selected channel div.
+        <a ui-sref="channels.messages({channelId: channel.$id})" ui-sref-active="selected">#{{channel.name}}</a> <!--//add special styling to selected channel div.-->
       </div>
     
       <div class="channel create">
@@ -31,7 +31,7 @@
         <div class="options">
             <a ui-sref='profile'>edit profile</a>
           /
-          <a href="#" ng-click="channelsCtrl.logout()"></a>
+          <a href="#" ng-click="channelsCtrl.logout()">Sign Out</a>
         </div>
       </div>
       </div>

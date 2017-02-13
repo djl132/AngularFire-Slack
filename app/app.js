@@ -92,8 +92,8 @@ angular
         },
         profile: function(Auth, Users, $state){
           //check if profile has a displayName -> set if none., return is there is
-          Auth.$requireSignIn().then(function(auth){
-            Users.getProfile(auth.uid).$loaded().then(function(profile){
+           return Auth.$requireSignIn().then(function(auth){
+            return Users.getProfile(auth.uid).$loaded().then(function(profile){
               if(profile.displayName)
                   return profile
               else
@@ -114,11 +114,12 @@ angular
     .state('channels.messages',{
       url: '/{channelId}/messages',
       templateUrl: 'channels/messages.html',
-      controller:'MessageCtrl as messageCtrl',
+      controller:'MessagesCtrl as messagesCtrl',
       resolve:{
         //get messages in the current channel using channelId
         messages: function($stateParams, Messages){    
-          return Messages.forChannel($stateParams.channelId).$loaded();
+          //get database messages realtime
+          return Messages.forChannel($stateParams.channelId).$loaded(); 
         }, 
         //get channelName of the current channel using channelId 
         //WHEN WAS THIS CHANNEL ID CREATED? UNLESS ITS SPECIFIED IN RULES.
