@@ -112,7 +112,7 @@ angular
       controller: 'ChannelsCtrl as channelsCtrl'
     })
     .state('channels.messages',{
-      url: '/{channelId}/messages',
+      url: '/{channelId}/messages', //pass currexntChannelId to the channels.messages state so that it can access the channelMessages object of that channel.
       templateUrl: 'channels/messages.html',
       controller:'MessagesCtrl as messagesCtrl',
       resolve:{
@@ -127,6 +127,25 @@ angular
           return '#' + channels.$getRecord($stateParams.channelId).name;
         }
       }
+    })
+    //is this run every time I send a messages and after it so that it updates the new DMs to the UI
+    .state('channels.direct',{
+      url:'/{oid}/messages/direct',
+      templateUrl: '/channels/messages.html',
+      controller: 'MessagesCtrl as messagesCtrl',
+      resolve:{
+        messages: 
+        function($stateParams, Messages, profile){
+          return Messages.forUsers($stateParams.oid, profile.$id).$loaded(); //what is this line for?
+        },
+        channelName: function($stateParams, Users){
+          
+          //make sure that all users are at realtime-state before you start getting any user's names
+           return Users.all.$loaded().then(function(){ //what exactly does this line do????????
+            return "@" + Users.getDisplayName($stateParams.oid);
+        });
+      }
+    }
     });
                                       
     $urlRouterProvider

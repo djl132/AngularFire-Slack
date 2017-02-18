@@ -5,6 +5,8 @@
     channelsCtrl.channels = channels;
     channelsCtrl.profile = profile;
     channelsCtrl.getGravatar = Users.getGravatar;
+    channelsCtrl.users = Users.all;
+    Users.setOnline(profile.$id); //how can you be so sure that profile
 
     //New Channels Holder
     channelsCtrl.newChannel = {
@@ -23,11 +25,13 @@
     }
     
     channelsCtrl.logout = function(){
+      channelsCtrl.profile.online = null; //what is this line for? shouldn't onDisconnect already rmeove this?
+      channelsCtrl.profile.$save().then(function(){
       Auth.$signOut().then(function(){
         $state.go('home');
       });
+      });
     };
-    
     
     return channelsCtrl;
   }
