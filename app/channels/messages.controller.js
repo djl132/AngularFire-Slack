@@ -24,9 +24,9 @@ angular
     }
   };
   
-  messagesCtrl.upvote = function(postId){
-    messages.$getRecord(postId).votes++;
-    messages.$save();
+  messagesCtrl.upvote = function(message){
+    message.votes++;
+    messages.$save(message);
   }
   
 });
