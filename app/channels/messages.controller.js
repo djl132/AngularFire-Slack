@@ -1,7 +1,7 @@
 //messages controller needs
 angular
   .module('angularfireSlackApp')
-  .controller('MessagesCtrl', function(messages, channelName, profile){
+  .controller('MessagesCtrl', function($firebaseObject, messages, channelName, profile){
   
   var messagesCtrl = this;
   
@@ -12,15 +12,21 @@ angular
   messagesCtrl.message = '';
   
   messagesCtrl.sendMessage = function(){
-    if(messagesCtrl.message.length > 0){
+   if(messagesCtrl.message.length > 0){
     messages.$add({
       uid: profile.$id,
       body: messagesCtrl.message,
-      timestamp: firebase.database.ServerValue.TIMESTAMP
+      timestamp: firebase.database.ServerValue.TIMESTAMP,
+      votes: 0
     }).then(function(){
       messagesCtrl.message = ''; // clear message
     });
     }
   };
+  
+  messagesCtrl.upvote = function(postId){
+    messages.$getRecord(postId).votes++;
+    messages.$save();
+  }
   
 });

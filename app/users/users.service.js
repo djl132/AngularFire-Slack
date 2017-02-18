@@ -36,7 +36,7 @@
         
         //whenver connection status chnages, update the profile's connection array about it 
         connected.$watch(function(){
-          if ($value == true)
+          if (connected.$value == true)
             online.$add(true).then(function(connectedRef){ ///what exactly is connectedRef?
               connectedRef.onDisconnect().remove();
             });

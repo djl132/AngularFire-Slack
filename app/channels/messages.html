@@ -11,6 +11,9 @@
       <div class="user-name">{{channelCtrl.getDisplayName(message.uid)}}</div>
       <span class="timestamp"> {{message.timestamp | date: 'short' }}</span>
       <div class="message">{{message.body}}</div>
+      <input type="button" value="upvote" ng-click="messagesCtrl.upvote(message.$id)">
+        <span>{{message.votes}}</span>
+      <input type="button" value="downvote" ng-click="messagesCtrl.downvote(message.$id)">
   </div>
 </div>
 

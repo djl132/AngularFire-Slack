@@ -75,7 +75,6 @@ angular
           }, 
           //profile info
           profile: function(Users, Auth){
-            debugger;
               return Auth.$requireSignIn().then(function(auth){
                 return Users.getProfile(auth.uid).$loaded();
               });
