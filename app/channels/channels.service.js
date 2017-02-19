@@ -4,7 +4,6 @@ angular
   .factory('Channels',['$firebaseArray', function($firebaseArray){
     var ref = firebase.database().ref('channels');
     var channels = $firebaseArray(ref);
-    debugger;
     return channels;
 }]);
 

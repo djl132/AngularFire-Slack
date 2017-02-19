@@ -3,6 +3,7 @@ angular
   .factory('Messages',function($firebaseArray){
     //get or create a Firebase reference to the userMessages node
     var channelMessagesRef = firebase.database().ref('channelMessages');
+  console.log($firebaseArray(channelMessagesRef));
     var userMessagesRef = firebase.database().ref('userMessages');
 
     return {  

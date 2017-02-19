@@ -5,15 +5,15 @@
 
 <!--MESSAGES PANE-->
 <div class="message-wrap" ng-repeat="message in messagesCtrl.messages">
-  <img class="user-pic" ng-src="{{channelsCtrl.getGravatar(message.uid) }}" />
+  <img class="user-pic" ng-src="{{channelsCtrl.getGravatar(message.uid)}}" />
   
   <div class="message-info">
-      <div class="user-name">{{channelCtrl.getDisplayName(message.uid)}}</div>
+      <div class="user-name">{{channelsCtrl.getDisplayName(message.uid)}}</div>
       <span class="timestamp"> {{message.timestamp | date: 'short' }}</span>
       <div class="message">{{message.body}}</div>
-      <input type="button" value="upvote" ng-click="messagesCtrl.upvote(message)">
-        <span>{{message.votes}}</span>
-      <input type="button" value="downvote" ng-click="messagesCtrl.downvote(message)">
+      <input type="button" value="upvote" ng-click="messagesCtrl.actions.upvote(message)">
+        <span>{{message.upvotes.length - message.downvotes.length}}</span>
+      <input type="button" value="downvote" ng-click="messagesCtrl.actions.downvote(message)">
   </div>
 </div>
 

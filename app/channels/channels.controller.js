@@ -1,5 +1,6 @@
 (function(){
   
+//  this constructor injection works, instead of controller injection....hmmm......study up on this.
   function ChannelsCtrl(Auth, Users, $state, profile, channels){
     var channelsCtrl = this;
     channelsCtrl.channels = channels;

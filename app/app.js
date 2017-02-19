@@ -115,7 +115,7 @@ angular
       templateUrl: 'channels/messages.html',
       controller:'MessagesCtrl as messagesCtrl',
       resolve:{
-        //get messages in the current channel using channelId
+        //get or create messages in the current channel using channelId
         messages: function($stateParams, Messages){    
           //get database messages realtime
           return Messages.forChannel($stateParams.channelId).$loaded(); 
@@ -124,6 +124,9 @@ angular
         //WHEN WAS THIS CHANNEL ID CREATED? UNLESS ITS SPECIFIED IN RULES.
         channelName: function($stateParams, channels){
           return '#' + channels.$getRecord($stateParams.channelId).name;
+        },
+        channelId: function($stateParams){
+          return $stateParams.channelId;
         }
       }
     })
