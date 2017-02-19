@@ -16,6 +16,8 @@ angular
     
     upvote.$loaded().then(function(ref){
       ref.$add({voter: voter});
+      upvote = ref;
+      message.votes = ref.length;
     });
     
     console.log(upvote)

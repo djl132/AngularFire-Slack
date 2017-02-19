@@ -17,7 +17,8 @@ angular
       uid: profile.$id,
       body: messagesCtrl.message,
       timestamp: firebase.database.ServerValue.TIMESTAMP,
-      channelId: channelId
+      channelId: channelId,
+      votes: 0
       }).then(function(){
       messagesCtrl.message = ''; // clear message
     });

@@ -12,7 +12,7 @@
       <span class="timestamp"> {{message.timestamp | date: 'short' }}</span>
       <div class="message">{{message.body}}</div>
       <input type="button" value="upvote" ng-click="messagesCtrl.actions.upvote(message)">
-        <span>{{message.upvotes.length - message.downvotes.length}}</span>
+        <span>{{message.votes}}</span>
       <input type="button" value="downvote" ng-click="messagesCtrl.actions.downvote(message)">
   </div>
 </div>
