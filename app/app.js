@@ -87,7 +87,8 @@ angular
       templateUrl:'/channels/index.html',
       resolve:{
         channels: function(Channels){
-          return Channels.$loaded(); //WHY USE LOADED?(firebaseArray) why not just retreive the channel firebaseArray immediateley?
+          var test = Channels.$loaded()
+          return test; //WHY USE LOADED?(firebaseArray) why not just retreive the channel firebaseArray immediateley?
         },
         profile: function(Auth, Users, $state){
           //check if profile has a displayName -> set if none., return is there is

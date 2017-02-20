@@ -2,46 +2,53 @@
 angular
   .module('angularfireSlackApp')
   .factory('Actions', function($firebaseArray){
-  
+  var channelMessagesRef = firebase.database().ref('channelMessages');
+
   var actions = this;
 
-  actions.upvote = function(message){ 
-    var channelMessagesRef = firebase.database().ref('channelMessages');
-    var messageRef = channelMessagesRef.child(message.channelId +'/' + message.$id);
-    var upvoteRef = messageRef.child('upvote');
-    console.log(upvoteRef)
-    var voter = message.uid;
-
-    var upvote = $firebaseArray(upvoteRef);
+  actions.upvote = function(message, uid){ 
+  
+    //store the value of the upvote object
+    var upvoteRef = channelMessagesRef.child(message.channelId +'/' + message.$id + '/upvote');
+    var downvoteRef = channelMessagesRef.child(message.channelId +'/' + message.$id + '/downvote');
     
-    upvote.$loaded().then(function(ref){
-      ref.$add({voter: voter});
-      upvote = ref;
-      message.votes = ref.length;
+    //get the value of the upvoteref in a firebase array in order to add stuff to the  upvoteRef object
+    var upvote = $firebaseArray(upvoteRef);
+    var downvote = $firebaseArray(downvoteRef);
+    
+//    var upvoted = downvoteRef.child('voter').equalTo(uid).$loaded();
+//    debugger;
+//    var downvoted = upvoteRef.child('voter').equalTo(uid).$loaded();
+//    debugger;
+
+    //get promised firebasearray and add to it if user has not upvoted on it yet.
+//    if(!upvoted){
+        upvote.$loaded().then(function(ref){
+          ref.$add({voter: uid}).then(function(vote){
+//            if(downvoted){
+              downvote.$remove({voter: uid});
+//            }
+          });
+        });
+//      }
+  };
+    
+  
+  actions.downvote = function(message, uid){ 
+    var downvoteRef = channelMessagesRef.child(message.channelId +'/' + message.$id + '/downvote');
+    
+    var downvote = $firebaseArray(downvoteRef);
+    var downvoted = 
+
+    downvote.$loaded().then(function(ref){
+      ref.$add({voter: uid}).then(function(vote){
+//        ref.$save(vote);
+      });
     });
     
-    console.log(upvote)
-  }
-
-    
-//    if(!upvote.$getRecord(voter)){////this needs to check whether or not the uid has already been added.
-//      if(message.downvote)
-//        message.downvote.$remove({voter :voter});
-    
-  actions.downvote = function(message){  
-    var ref = firebase.database().ref('channelMessages').child(message.channelId +'/'+ message.$id + '/downvote' );
-    var downvote = $firebaseArray(ref);
-    var voter = message.uid;
-
-    if(downvote.$getRecord() < 0){ ////this needs to check whether or not the uid has already been added.
-      if(message.upvote)
-        message.upvote.$remove({voter :voter});
-        downvote.$add({voter :voter});
-    }
   };
   
- 
-    return actions
   
-  
+    return actions;
 });
+

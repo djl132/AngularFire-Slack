@@ -11,7 +11,8 @@ angular
       //GET or CREATE A SPECIFIC CHANNEL'S MESSAGES given the channel's id,
         forChannel: function(channelId){
           //creates a messagesObject for that channel using a specific channelId
-            return $firebaseArray(channelMessagesRef.child(channelId)); 
+         var test = $firebaseArray(channelMessagesRef.child(channelId));
+            return test; 
         },
       
       //GET or CREATE A SPECIFIC DIRECT MESSAGES given both user's ids,
