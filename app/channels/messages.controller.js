@@ -9,9 +9,20 @@ angular
   messagesCtrl.channelName = channelName;
   debugger;
     
-  $scope.favoringVotes = function(msgs) {
-    return (Object.keys(msgs.upvote).length) - (Object.keys(msgs.downvote).length); ///dang this works
- };
+//real time binding a value to the message 
+  $scope.favoringVotes = function(msg) {
+     var upvote = 0;
+     var downvote = 0;
+     if (typeof msg.upvote === "undefined") { upvote = 0; }
+     else {
+         upvote = Object.keys(msg.upvote).length;
+     }
+     if (typeof msg.downvote === "undefined") { downvote = 0; }
+     else {
+         downvote = Object.keys(msg.downvote).length;
+     }
+   return upvote - downvote///dang this works
+};
   
   messagesCtrl.message = '';
   
