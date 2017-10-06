@@ -20,7 +20,7 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
-
+  var bower_components = ['jquery','angular'];
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -395,7 +395,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+//      'wiredep',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',

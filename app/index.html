@@ -26,17 +26,19 @@
     <script src="https://www.gstatic.com/firebasejs/3.6.7/firebase.js"></script>
    <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAq-dLVc4Lq5QREVUQU75FyxstyOo0SuJ4",
-    authDomain: "dunno-e4c4f.firebaseapp.com",
-    databaseURL: "https://dunno-e4c4f.firebaseio.com",
-    storageBucket: "dunno-e4c4f.appspot.com",
-    messagingSenderId: "411860181736"
-  };
-  firebase.initializeApp(config);
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAq-dLVc4Lq5QREVUQU75FyxstyOo0SuJ4",
+        authDomain: "dunno-e4c4f.firebaseapp.com",
+        databaseURL: "https://dunno-e4c4f.firebaseio.com",
+        storageBucket: "dunno-e4c4f.appspot.com",
+        messagingSenderId: "411860181736"
+      };
+      firebase.initializeApp(config);
+    </script>
 
     
     <ui-view></ui-view>
@@ -51,13 +53,12 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
-    </script>
+     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-md5/angular-md5.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -67,5 +68,12 @@
    <script src="app.js"></script>
     <script src="auth/auth.controller.js"></script>
     <script src="auth/auth.service.js"></script>
+    <script src="users/users.service.js"></script>
+    <script src="users/profile.controller.js"></script>
+    <script src="channels/channels.service.js"></script>
+    <script src="channels/channels.controller.js"></script>
+    <script src="channels/messages.service.js"></script>
+    <script src="channels/messages.controller.js"></script>
+    <script src="actions/actions.service.js"></script>
 </body>
 </html>
