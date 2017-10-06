@@ -5,5 +5,5 @@ angular
   .factory('Auth',['$firebaseAuth', function($firebaseAuth){
     var auth = $firebaseAuth();
     console.log(auth);
-    return auth;  
+    return auth;
  }]);
