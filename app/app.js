@@ -15,13 +15,14 @@ angular
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
+
     $stateProvider
         .state('home',{
           url:'/',
           templateUrl:'home/home.html'
         })
-    
-        .state('login', 
+
+        .state('login',
           {
           url: '/login',
           controller: 'AuthCtrl as authCtrl',
@@ -36,7 +37,6 @@ angular
               }
             }
           })
-    
       .state('register', {
         url: '/register',
         controller: 'AuthCtrl as authCtrl',
@@ -51,8 +51,11 @@ angular
             }
           }
       });
-  
+
     $urlRouterProvider
       .otherwise('/');
+
+    firebase.initializeApp(config);
+
   })
   .constant('FirebaseUrl', 'https://slack.firebaseio.com/');
