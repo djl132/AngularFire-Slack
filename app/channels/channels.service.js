@@ -6,30 +6,3 @@ angular
     var channels = $firebaseArray(ref);
     return channels;
 }]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,14 +1,14 @@
 
 
-function MessagesCtrl($scope, Actions, $firebaseObject, messages, channelName, profile, channelId) {
+function MessagesCtrl($scope, Actions, $firebaseObject, messages, channelName, profile) {
   var messagesCtrl = this;
   messagesCtrl.actions = Actions;
   messagesCtrl.messages = messages;
-  console.log(channelName);
   messagesCtrl.channelName = channelName;
   debugger;
 
 //real time binding a value to the message
+///dang this works!!!
   $scope.favoringVotes = function(msg) {
      var upvote = 0;
      var downvote = 0;
@@ -20,18 +20,18 @@ function MessagesCtrl($scope, Actions, $firebaseObject, messages, channelName, p
      else {
          downvote = Object.keys(msg.downvote).length;
      }
-   return upvote - downvote///dang this works
+   return upvote - downvote;
 };
 
   messagesCtrl.message = '';
 
   messagesCtrl.sendMessage = function(){
+    debugger;
    if(messagesCtrl.message.length > 0){
     messages.$add({
       uid: profile.$id,
       body: messagesCtrl.message,
       timestamp: firebase.database.ServerValue.TIMESTAMP,
-      channelId: channelId,
       votes: 0
       }).then(function(){
       messagesCtrl.message = ''; // clear message
@@ -45,4 +45,4 @@ function MessagesCtrl($scope, Actions, $firebaseObject, messages, channelName, p
 //messages controller needs
 angular
   .module('angularfireSlackApp')
-  .controller('MessagesCtrl', ['$scope', 'Actions', '$firebaseObject', 'messages', 'channelName', 'profile', 'channelId', MessagesCtrl]);
+  .controller('MessagesCtrl', ['$scope', 'Actions', '$firebaseObject', 'messages', 'channelName', 'profile', MessagesCtrl]);

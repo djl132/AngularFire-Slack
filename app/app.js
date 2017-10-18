@@ -113,7 +113,7 @@ angular
       controller: 'ChannelsCtrl as channelsCtrl'
     })
     .state('channels.messages',{
-      url: '/{channelId}/messages', //pass currexntChannelId to the channels.messages state so that it can access the channelMessages object of that channel.
+      url: '/{channelId}/messages', //pass currexnt ChannelId to the channels.messages state so that it can access the channelMessages object of that channel.
       templateUrl: 'channels/messages.html',
       controller:'MessagesCtrl as messagesCtrl',
       resolve:{
@@ -124,12 +124,8 @@ angular
         },
         //get channelName of the current channel using channelId
         //WHEN WAS THIS CHANNEL ID CREATED? UNLESS ITS SPECIFIED IN RULES.
-        channelName: function($stateParams, channels){
-          return '#' + channels.$getRecord($stateParams.channelId).name;
-        },
-        channelId: function($stateParams){
-          debugger;
-          return $stateParams.channelId;
+        channelName: function($stateParams, Channels){
+          return '#' + Channels.$getRecord($stateParams.channelId).name;
         }
       }
     })
@@ -141,8 +137,8 @@ angular
       resolve:{
         messages: function($stateParams, Messages, profile){
           //go to check which DIRECTMESSAGES this is WITH.
-          //oic --> other user
-          return Messages.forUsers($stateParams.oid, profile.$id).$loaded();
+          //oid --> other user
+          return Messages.forUsers(profile.$id, $stateParams.oid).$loaded();
         },
         channelName: function($stateParams, Users){
 
