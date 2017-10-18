@@ -12,9 +12,9 @@
       <div class="user-name">{{channelsCtrl.getDisplayName(message.uid)}}</div>
       <span class="timestamp"> {{message.timestamp | date: 'short' }}</span>
       <div class="message">{{message.body}}</div>
-      <input type="button" value="upvote" ng-click="messagesCtrl.actions.upvote(message, channelsCtrl.profile.$id)">
-        <span> {{favoringVotes(message)}}</span>
-      <input type="button" value="downvote" ng-click="messagesCtrl.actions.downvote(message, channelsCtrl.profile.$id)">
+      <input type="button" value="upvote" ng-if= "messagesCtrl.inChannel" ng-click="messagesCtrl.actions.upvote(message, channelsCtrl.profile.$id)">
+        <span ng-if= "messagesCtrl.inChannel"> {{messagesCtrl.favoringVotes(message)}}</span>
+      <input type="button" value="downvote" ng-if="messagesCtrl.inChannel" ng-click="messagesCtrl.actions.downvote(message, channelsCtrl.profile.$id)">
   </div>
 </div>
 
