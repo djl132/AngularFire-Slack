@@ -1,5 +1,6 @@
 # angularfire-slack
 
+## previews are coming soon.
 
 
 ***
@@ -9,8 +10,10 @@ version 0.11.1.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+Install dependencies:
 
-## Testing
+`npm install`
+`bower install`
 
-Running `grunt test` will run the unit tests with karma.
+Run `grunt` for building and `grunt serve` to load app.
+
