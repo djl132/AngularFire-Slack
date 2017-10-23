@@ -125,7 +125,6 @@ angular
         //get channelName of the current channel using channelId
         //WHEN WAS THIS CHANNEL ID CREATED? UNLESS ITS SPECIFIED IN RULES.
         channelName: function($stateParams, Channels){
-          debugger;
           return '#' + Channels.$getRecord($stateParams.channelId).name;
         }
       }
